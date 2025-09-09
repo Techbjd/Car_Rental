@@ -1,7 +1,7 @@
 import { HiCheckCircle } from "react-icons/hi";
 function ProfileCard() {
   return (
-    <div className="max-w-[1440px] mx-auto px-6 py-16 flex flex-col md:flex-row gap-16">
+    <div className="max-w-[1296px] mx-auto px-6 py-16 flex flex-col md:flex-row gap-16">
       
       {/* Left Column - Text */}
       <div className="flex-1 flex flex-col gap-6">
