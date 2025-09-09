@@ -1,12 +1,12 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 text-gray-900 py-19 ">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-gray-50 text-gray-900  flex  ">
+      <div className="w-full  md:max-w-[1296px] mx-auto px-6  lg:px-8">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       
           <div className="space-y-8">
-            <div className="flex items-center space-x-3">
+            <div className="flex  items-center space-x-3">
               <svg className="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M5 16l-1 4h16l-1-4H5zm0-6l7-4 7 4v4H5v-4z"/>
               </svg>
@@ -42,8 +42,8 @@ const Footer = () => {
           </div>
 
           {/* Column 2: Address */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
+          <div className="space-y-6  ">
+            <div className="flex items-center-safe space-x-3">
               <svg className="w-10 h-10 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
               </svg>
@@ -90,8 +90,8 @@ const Footer = () => {
           </div>
 
           {/* Column 4: Phone & App Download */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
+          <div className="space-y-6  ">
+            <div className="flex items-center space-x-3  ">
               <svg className="w-10 h-10 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21 11.36 11.36 0 003.57.57 1 1 0 011 1v3.25a1 1 0 01-1 1C10.3 21.33 2.67 13.7 2 5a1 1 0 011-1h3.25a1 1 0 011 1c0 1.27.2 2.53.57 3.57a1 1 0 01-.21 1.11l-2.2 2.2z"/>
               </svg>
