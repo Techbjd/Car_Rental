@@ -1,6 +1,10 @@
 import blurcar from "../assets/blurcar.png"; 
+import React from "react";
+interface AboutBannerProps {
+  imageSrc: string;
+}
 
-const AboutBanner = ({ imageSrc }) => {
+const AboutBanner: React.FC<AboutBannerProps> = ({ imageSrc }) => {
   return (
     <div className="relative max-w-[1296px] mx-auto rounded-xl overflow-hidden bg-[#5937E0]">
       {/* Inner content */}
