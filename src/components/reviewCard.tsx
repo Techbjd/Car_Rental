@@ -8,7 +8,7 @@ interface ReviewCardProps {
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ name, company, text, image }) => {
   return (
-    <section className="relative  bg-[#f9f9f9] rounded-2xl w-[400px] h-auto  items-center shadow-md overflow-hidden">
+    <section className="relative  bg-[#f9f9f9] rounded-2xl  sm:w-[400px] md:w-6/7  h-auto   items-center shadow-md overflow-hidden">
       {/* Review Content */}
       <div className="w-full h-[200px] flex items-center justify-center px-6 text-center">
         <p className="text-gray-500">"{text}"</p>

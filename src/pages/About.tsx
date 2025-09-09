@@ -125,8 +125,9 @@ function About() {
       <BlogCard />
 
       {/* Reviews */}
-      <div className="w-full justify-center item-center max-w-[1296px] grid grid-cols-1 gap-2 p-4 mx-auto md:grid-cols-3 ">
+      <div className="w-full  m-auto md:max-w-[1296px] grid grid-cols-1 gap-2 p-4 md:grid-cols-2 lg:grid-cols-3 ">
         {testimonials.map((user, index) => (
+          <div key={index} className="flex justify-center">
           <ReviewCard
             key={index}
             name={user.name}
@@ -134,6 +135,7 @@ function About() {
             text={user.text}
             image={user.image}
           />
+          </div>
         ))}
       </div>
 
