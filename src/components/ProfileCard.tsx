@@ -47,11 +47,11 @@ function ProfileCard() {
         </div>
 
         {/* Right Column - Image */}
-        <div className="flex-1 flex justify-center">
+        <div className=" flex justify-center">
           <img
             src="https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg"
             alt="Profile"
-            className="w-full max-w-[550px] h-auto rounded-2xl bg-amber-300"
+            className="w-full max-w-[500px] h-auto rounded-2xl bg-amber-300"
           />
         </div>
       </div>

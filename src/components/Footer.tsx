@@ -116,7 +116,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="mt-2 pt-3 text-center text-gray-500 text-sm">
+        <div className="mt-2 pt-1 text-center text-gray-500 text-sm">
           <p>© Copyright Car Rental 2025. Design by </p>
         </div>
       </div>

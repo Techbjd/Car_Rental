@@ -76,7 +76,7 @@ function About() {
   return (
     <>
       {/* Hero Section */}
-      <div className="w-full h-auto flex flex-col items-center justify-center gap-4 rounded-[40px]  px-4 sm:px-6 md:px-12">
+      <div className="w-full h-auto flex flex-col items-center justify-center gap-4 rounded-[40px] px-4 sm:px-6 md:px-12">
         <h1 className="text-4xl sm:text-5xl font-bold text-center">About Us</h1>
         <p className="text-base sm:text-lg md:text-xl text-center text-gray-600">
           Home / About Us
