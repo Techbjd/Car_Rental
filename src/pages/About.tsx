@@ -87,8 +87,8 @@ function About() {
       <section className="w-full px-4 sm:px-6 md:px-20 lg:px-32 py-16 flex flex-col gap-12 mx-auto">
         <div className="max-w-[1296px] mx-auto flex flex-col md:flex-row gap-10">
           {/* Title */}
-          <div className="w-full md:w-1/3">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug">
+          <div className="w-full md:w-2/3 lg:**:w-1/3">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold  leading-snug">
               Where every driver feels extraordinary
             </h2>
           </div>
@@ -118,6 +118,7 @@ function About() {
           {stats.map((item, index) => (
             <StatsCard key={index} number={item.number} label={item.label} />
           ))}
+         
         </div>
       </div>
 
@@ -125,19 +126,22 @@ function About() {
       <BlogCard />
 
       {/* Reviews */}
-      <div className="w-full  m-auto md:max-w-[1296px] grid grid-cols-1 gap-2 p-4 md:grid-cols-2 lg:grid-cols-3 ">
-        {testimonials.map((user, index) => (
-          <div key={index} className="flex justify-center">
-          <ReviewCard
-            key={index}
-            name={user.name}
-            company={user.company}
-            text={user.text}
-            image={user.image}
-          />
-          </div>
-        ))}
-      </div>
+     <div className="w-full m-auto md:max-w-[1296px] flex flex-wrap justify-center  gap-4 p-4 md:flex-nowrap">
+  {testimonials.map((user, index) => (
+    <div
+      key={index}
+      className="flex justify-center w-full md:w-1/2 lg:w-1/3"
+    >
+      <ReviewCard
+        name={user.name}
+        company={user.company}
+        text={user.text}
+        image={user.image}
+      />
+    </div>
+  ))}
+</div>
+
 
       {/* Profile + FAQ */}
       <ProfileCard />
