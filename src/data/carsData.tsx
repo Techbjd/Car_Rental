@@ -1,5 +1,6 @@
 // src/data/carsData.ts
 export interface Car {
+
   id: number;
   brand: string;
   model: string;

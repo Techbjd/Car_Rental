@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import CarDetails from "../components/CarDetails";
 import carsData from "../data/carsData";
 import CarCard from "../components/CarCard";
+import { useState } from "react";
 
 function Services() {
-  return (
+ 
+ const [selectedCarId, setSelectedCarId] = useState<number>(carsData[0].id);
+console.log(setSelectedCarId)
+ return (
     <div>
       {/* Car details section */}
-      <CarDetails />
+      <CarDetails carId={selectedCarId}  />
 
       {/* Other cars section */}
       <section className="py-8 sm:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">

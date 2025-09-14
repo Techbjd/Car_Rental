@@ -6,6 +6,7 @@ import Vehicles from "./pages/Vehicles";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
+import Cart from "./pages/cart";
 
 function App() {
   return (
@@ -48,6 +49,14 @@ function App() {
           element={
             <MainLayout>
               <Contact />
+            </MainLayout>
+          }
+        />
+         <Route
+          path="/cart"
+          element={
+            <MainLayout>
+              <Cart />
             </MainLayout>
           }
         />

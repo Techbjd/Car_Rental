@@ -26,6 +26,7 @@ function Navbar() {
           <Link to="/services" className="text-[18px] hover:text-purple-600 transition">Services</Link>
           <Link to="/about" className="text-[18px] hover:text-purple-600 transition">About Us</Link>
           <Link to="/contact" className="text-[18px] hover:text-purple-600 transition">Contact Us</Link>
+                     <Link to="/cart" className="text-[18px] hover:text-purple-600 transition">Cart</Link>
         </div>
 
         {/* Right - Phone + Hamburger */}

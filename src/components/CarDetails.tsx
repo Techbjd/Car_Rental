@@ -1,5 +1,13 @@
 
 import { Settings, AirVent, Shield, Thermometer, CheckCheck } from "lucide-react";
+import { addToCart } from "../redux/slices/counter";
+import { useAppDispatch } from "../redux/hooks";
+import carsData from "../data/carsData";
+import { useState } from "react";
+
+interface CarDetailsProps {
+  carId: number;
+}
 
 const specs = [
   { name: "Gearbox", icon: <Settings className="w-6 h-6 text-black" /> },
@@ -9,7 +17,22 @@ const specs = [
   { name: "Air Conditioner", icon: <Thermometer className="w-6 h-6 text-black" /> },
 ];
 
-const CarDetails = () => {
+const CarDetails : React.FC<CarDetailsProps> = ({ carId }) => {
+      const dispatch = useAppDispatch();
+    const [message, setMessage] = useState("");
+  const car = carsData.find((c) => c.id === carId);
+
+  const handleRent = () => {
+    if (car) {
+      dispatch(addToCart(car));
+
+      setMessage(`${car.brand} ${car.model} added to cart!`);
+
+    
+      setTimeout(() => setMessage(""), 2000);
+    }
+  };
+  
   return (
     <div className="w-full min-h-[860px] flex flex-col lg:flex-row justify-center items-start p-6 lg:p-[60px_72px] gap-6">
       {/* Left Column */}
@@ -47,6 +70,11 @@ const CarDetails = () => {
       </div>
 
       {/* Right Column */}
+      {message && (
+        <div className="absolute top-0 right-0 m-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+          {message}
+        </div>
+      )}
       <div className="flex flex-col gap-12 lg:gap-16 w-full lg:w-[636px]">
        
         <div className="flex flex-col gap-6 lg:gap-10">
@@ -70,7 +98,7 @@ const CarDetails = () => {
         </div>
 
         {/* Button */}
-        <button className="w-full sm:w-[200px] lg:w-[290px] h-[45px] lg:h-[50px] bg-purple-700 text-white rounded-lg font-semibold">
+        <button    onClick={handleRent} className="w-full sm:w-[200px] lg:w-[290px] h-[45px] lg:h-[50px] bg-purple-700 text-white rounded-lg font-semibold">
           Rent a Car
         </button>
 
