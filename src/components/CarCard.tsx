@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 
 import React from 'react';
+
 interface Car {
   id: number;
   brand: string;
@@ -9,8 +11,14 @@ interface Car {
   image?: string;
 }
 
-const CarCard: React.FC<{ car: Car }> = ({ car }) => {
-  // Icon mapping based on feature name
+interface CarCardProps {
+  car: Car;
+ onSelect?: (id: number) => void; 
+ navigateTo?: string;
+}
+
+const CarCard: React.FC<CarCardProps> = ({ car ,onSelect ,navigateTo}) => {
+  const navigate = useNavigate();
   const getIcon = (feature: string) => {
     switch (feature.toLowerCase()) {
       case 'automat':
@@ -40,14 +48,10 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => {
   };
 
   return (
-    <div 
+
+    <div onClick={() => onSelect && onSelect(car.id)}
       className="bg-white rounded-[20px] shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition duration-200 cursor-pointer w-full max-w-[416px]"
-      style={{
-        width: '100%',
-        maxWidth: '416px',
-        height: 'auto',
-        opacity: 1,
-      }}
+      
     >
       {/* Car Image */}
       <div className="h-48 md:h-[200px] flex items-center justify-center bg-gray-50">
@@ -58,9 +62,8 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => {
         />
       </div>
 
-      {/* Content Area */}
+      {/* Content */}
       <div className="p-4 md:p-6">
-        {/* Brand & Model + Price */}
         <div className="flex justify-between items-start mb-4 md:mb-6">
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-900">{car.brand}</h3>
@@ -72,7 +75,7 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => {
           </div>
         </div>
 
-        {/* Features Row */}
+        {/* Features */}
         <div className="flex flex-wrap gap-4 mt-4 text-gray-600">
           {car.features.map((feature, index) => (
             <div key={index} className="flex items-center">
@@ -81,14 +84,19 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => {
             </div>
           ))}
         </div>
+<button
+  onClick={() => {
+    if (navigateTo) {
+      navigate(`${navigateTo}?carId=${car.id}`);
+    } else if (onSelect) {
+      onSelect(car.id);
+    }
+  }}
+  className="mt-6 w-full bg-purple-600 text-white py-2 md:py-3 px-4 md:px-6 rounded-full hover:bg-purple-700 transition font-medium text-sm md:text-base"
+>
+  View Details
+</button>
 
-        {/* View Details Button */}
-        <button
-          className="mt-6 w-full bg-purple-600 text-white py-2 md:py-3 px-4 md:px-6 rounded-full hover:bg-purple-700 transition font-medium text-sm md:text-base"
-          onClick={() => window.location.href = `/car/${car.id}`}
-        >
-          View Details
-        </button>
       </div>
     </div>
   );

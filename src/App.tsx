@@ -7,7 +7,14 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import Cart from "./pages/cart";
+import CarDetails from "./components/CarDetails"; 
+import { useParams } from "react-router-dom";
 
+
+const CarDetailsWrapper: React.FC = () => {
+  const { carId } = useParams();
+  return <CarDetails carId={Number(carId)} />;
+};
 function App() {
   return (
     <Router>
@@ -60,6 +67,13 @@ function App() {
             </MainLayout>
           }
         />
+         <Route path="/car/:carId" 
+         element=
+         {<MainLayout>
+          <CarDetailsWrapper />
+          </MainLayout>
+          }
+           />
       </Routes>
     </Router>
   );

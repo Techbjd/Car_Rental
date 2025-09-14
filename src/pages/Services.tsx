@@ -1,19 +1,28 @@
-import { Link } from "react-router-dom";
 import CarDetails from "../components/CarDetails";
 import carsData from "../data/carsData";
 import CarCard from "../components/CarCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
 function Services() {
- 
- const [selectedCarId, setSelectedCarId] = useState<number>(carsData[0].id);
-console.log(setSelectedCarId)
- return (
-    <div>
-      {/* Car details section */}
-      <CarDetails carId={selectedCarId}  />
+  const [searchParams] = useSearchParams();
+const queryCarId = searchParams.get("carId");
+const [selectedCarId, setSelectedCarId] = useState<number>(
+  queryCarId ? Number(queryCarId) : carsData[0].id
+);
 
-      {/* Other cars section */}
+useEffect(() => {
+    if (queryCarId) {
+      setSelectedCarId(Number(queryCarId));
+    }
+  }, [queryCarId]);
+
+  return (
+    <div>
+      {/* Dynamic Car Details */}
+      <CarDetails carId={selectedCarId} />
+
+      {/* Other Cars Section */}
       <section className="py-8 sm:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold">Other Cars</h2>
@@ -27,7 +36,11 @@ console.log(setSelectedCarId)
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {carsData.map((car) => (
-            <CarCard key={car.id} car={car} />
+            <CarCard
+              key={car.id}
+              car={car}
+             onSelect={(id) => setSelectedCarId(id)}
+              />
           ))}
         </div>
       </section>
