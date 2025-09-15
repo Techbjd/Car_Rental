@@ -1,6 +1,7 @@
 import { Settings, AirVent, Shield, Thermometer, CheckCheck } from "lucide-react";
-import { addToCart } from "../redux/slices/counter";
-import { useAppDispatch } from "../redux/hooks";
+// import { addToCart } from "../redux/slices/counter";
+// import { useAppDispatch } from "../redux/hooks";
+import { useCartStore } from "../zustand/store";
 import carsData from "../data/carsData";
 import { useState, type JSX } from "react";
 import React from "react";
@@ -19,7 +20,8 @@ const featureIcons: Record<string, JSX.Element | null> = {
 };
 
 const CarDetails: React.FC<CarDetailsProps> = ({ carId }) => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
+   const addToCart = useCartStore((state) => state.addToCart);
   const [message, setMessage] = useState("");
 
   const car = carsData.find((c) => c.id === carId);
@@ -27,7 +29,7 @@ const CarDetails: React.FC<CarDetailsProps> = ({ carId }) => {
   if (!car) return <p className="text-center text-red-500">Car not found!</p>;
 
   const handleRent = () => {
-    dispatch(addToCart(car));
+    addToCart(car);
     setMessage(`${car.brand} ${car.model} added to cart!`);
     setTimeout(() => setMessage(""), 2000);
   };

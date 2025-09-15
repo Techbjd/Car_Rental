@@ -1,9 +1,17 @@
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { increment, decrement, removeFromCart, clearCart } from "../redux/slices/counter";
-
+// import { useAppDispatch, useAppSelector } from "../redux/hooks";
+// import { increment, decrement, removeFromCart, clearCart } from "../redux/slices/counter"; 
+import { useCartStore } from "../zustand/store";
 const Cart: React.FC = () => {
-  const { items } = useAppSelector((state) => state.cart);
-  const dispatch = useAppDispatch();
+  // const { items } = useAppSelector((state) => state.cart);
+  // const dispatch = useAppDispatch();
+
+const items = useCartStore((state) => state.items);
+  const increment = useCartStore((state) => state.increment);
+  const decrement = useCartStore((state) => state.decrement);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const clearCart = useCartStore((state) => state.clearCart);
+
+
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -25,21 +33,21 @@ const Cart: React.FC = () => {
               </div>
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => dispatch(decrement(item.id))}
+                  onClick={() => decrement(item.id)}
                   className="px-2 py-1 bg-gray-200 rounded"
                 >
                   ➖
                 </button>
                 <span>{item.quantity}</span>
                 <button
-                  onClick={() => dispatch(increment(item.id))}
+                  onClick={() => increment(item.id)}
                   className="px-2 py-1 bg-gray-200 rounded"
                 >
                   ➕
                 </button>
               </div>
               <button
-                onClick={() => dispatch(removeFromCart(item.id))}
+                onClick={() => removeFromCart(item.id)}
                 className="text-red-600 font-semibold"
               >
                 ✖
@@ -51,7 +59,7 @@ const Cart: React.FC = () => {
             <span>${total}</span>
           </div>
           <button
-            onClick={() => dispatch(clearCart())}
+            onClick={() =>  clearCart()}
             className="w-full mt-4 bg-purple-700 text-white py-2 rounded-lg"
           >
             Clear Cart
