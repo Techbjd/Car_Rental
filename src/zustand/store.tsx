@@ -7,6 +7,7 @@ interface CartItem extends Car {
 
 interface CartState {
   items: CartItem[];
+  initCart: () => void;
   addToCart: (car: Car) => void;
   removeFromCart: (id: number) => void;
   increment: (id: number) => void;
@@ -14,7 +15,7 @@ interface CartState {
   clearCart: () => void;
 }
 
-
+// Cookie helpers
 const setCookie = (name: string, value: string, days: number) => {
   const d = new Date();
   d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
@@ -25,23 +26,30 @@ const deleteCookie = (name: string) => {
   document.cookie = `${name}=;expires=${new Date(0).toUTCString()};path=/`;
 };
 
-
+// Persist cart in localStorage + cookies
 const persistCart = (items: CartItem[]) => {
   const data = JSON.stringify(items);
-  localStorage.setItem("cart", data);
-  setCookie("cart", data, 7); // expires in 7 days
+  if (typeof window !== "undefined") {
+    localStorage.setItem("cart", data);
+    setCookie("cart", data, 7);
+  }
 };
 
-
+// Zustand store
 export const useCartStore = create<CartState>((set, get) => ({
-  items: JSON.parse(localStorage.getItem("cart") ?? "[]"),
+  items: [], // start empty
+  initCart: () => {
+    if (typeof window !== "undefined") {
+      const stored = JSON.parse(localStorage.getItem("cart") ?? "[]");
+      set({ items: stored });
+    }
+  },
 
   addToCart: (car: Car) => {
-    const items = [...get().items]; 
+    const items = [...get().items];
     const existing = items.find((item) => item.id === car.id);
     if (existing) existing.quantity += 1;
     else items.push({ ...car, quantity: 1 });
-
     persistCart(items);
     set({ items });
   },
@@ -64,7 +72,7 @@ export const useCartStore = create<CartState>((set, get) => ({
     let items = get().items.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity - 1 } : item
     );
-    items = items.filter((item) => item.quantity > 0); 
+    items = items.filter((item) => item.quantity > 0);
     persistCart(items);
     set({ items });
   },

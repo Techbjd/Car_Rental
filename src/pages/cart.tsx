@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 // import { useAppDispatch, useAppSelector } from "../redux/hooks";
 // import { increment, decrement, removeFromCart, clearCart } from "../redux/slices/counter"; 
 import { useCartStore } from "../zustand/store";
@@ -14,6 +15,10 @@ const items = useCartStore((state) => state.items);
 
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const initCart = useCartStore((state) => state.initCart);
+  useEffect(() => {
+    initCart();
+  }, []);
 
   return (
     <div className="p-6 max-w-2xl mx-auto">
